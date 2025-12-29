@@ -1,5 +1,4 @@
-import "./assets/main.css";
-
+import "./assets/design-system.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
