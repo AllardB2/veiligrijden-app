@@ -9,6 +9,7 @@
   --color-text-muted: #6b7280;
   --color-light-blue: #EAF4FF;
   --color-gray-light: #F0F0F0;
+  --color-gradient: linear-gradient(to bottom, #880202, #012856);
 
   /* Spacing */
   --spacing-xs: 4px;

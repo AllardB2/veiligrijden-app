@@ -38,7 +38,7 @@ defineProps({
 <style scoped>
 .base-button {
   width: 100%;
-  padding: 16px 24px;
+  padding: 12px 24px;
   border-radius: var(--radius-sm);
   border: none;
   font-size: 16px;
