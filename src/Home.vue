@@ -3,6 +3,7 @@ import { ref } from "vue";
 import AppShell from "./components/shared/AppShell.vue";
 import Mascot from "./components/shared/Mascot.vue";
 import BaseButton from "./components/shared/BaseButton.vue";
+import Wrapped from "./Wrapped.vue";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -26,7 +27,23 @@ import battery from "./components/icons/popup/Battery.png";
 import firmware from "./components/icons/popup/Firmware.png";
 import reload from "./components/icons/popup/Reload.png";
 
+import homeIcon from "./components/icons/menu/home.png";
+import tripsIcon from "./components/icons/menu/rit.png";
+import mapIcon from "./components/icons/menu/map.png";
+import discountIcon from "./components/icons/menu/discount.png";
+import moreIcon from "./components/icons/menu/settings.png";
+
+const navItems = [
+  { label: 'Home', icon: homeIcon, active: true },
+  { label: 'Ritten', icon: tripsIcon, active: false },
+  { label: 'Kaart', icon: mapIcon, active: false },
+  { label: 'Korting', icon: discountIcon, active: false },
+  { label: 'Meer', icon: moreIcon, active: false }
+]
+
 const showBeaconModal = ref(false);
+
+const showWrapped = ref(false);
 
 const modules = [Pagination];
 
@@ -81,6 +98,7 @@ const quickActions = [
 
 <template>
   <AppShell>
+    <Wrapped v-if="showWrapped" @close="showWrapped = false" />
     <div class="home-view pb-5 sticky-bottom-padding">
       <!-- A. Header Section -->
       <header class="home-header px-3 pt-4">
@@ -93,7 +111,11 @@ const quickActions = [
               <span class="points-badge__text">{{ user.points }} punten</span>
             </div>
           </div>
-          <div class="header-right position-relative">
+          <div
+            class="header-right position-relative"
+            @click="showWrapped = true"
+            style="cursor: pointer;"
+          >
             <Mascot emotion="neutral" class="mascot-sm" />
             <span class="notif-badge">!</span>
           </div>
@@ -386,23 +408,33 @@ const quickActions = [
         class="bottom-nav fixed-bottom bg-white shadow-lg d-flex justify-content-around align-items-center py-3"
       >
         <div class="nav-item text-center active">
-          <div class="nav-icon mb-1">🏠</div>
+          <div class="nav-icon mb-1">
+            <img :src="homeIcon" alt="Home" class="png-icon" />
+          </div>
           <div class="x-small fw-bold">Home</div>
         </div>
         <div class="nav-item text-center">
-          <div class="nav-icon mb-1">🛣️</div>
+          <div class="nav-icon mb-1">
+            <img :src="tripsIcon" alt="Ritten" class="png-icon" />
+          </div>
           <div class="x-small fw-bold">Ritten</div>
         </div>
         <div class="nav-item text-center">
-          <div class="nav-icon mb-1">🗺️</div>
+          <div class="nav-icon mb-1">
+            <img :src="mapIcon" alt="Kaart" class="png-icon" />
+          </div>
           <div class="x-small fw-bold">Kaart</div>
         </div>
         <div class="nav-item text-center">
-          <div class="nav-icon mb-1">🏷️</div>
+          <div class="nav-icon mb-1">
+            <img :src="discountIcon" alt="Korting" class="png-icon" />
+          </div>
           <div class="x-small fw-bold">Korting</div>
         </div>
         <div class="nav-item text-center">
-          <div class="nav-icon mb-1">⚙️</div>
+          <div class="nav-icon mb-1">
+            <img :src="moreIcon" alt="Meer" class="png-icon" />
+          </div>
           <div class="x-small fw-bold">Meer</div>
         </div>
       </nav>
@@ -508,8 +540,8 @@ const quickActions = [
   left: 35px;
   background: #ff4d4d;
   color: white;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   font-size: 11px;
   display: flex;
@@ -518,6 +550,16 @@ const quickActions = [
   font-weight: bold;
   border: 2px solid var(--color-navy);
   top: 30px;
+  animation: badgeBounce 1s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* Score Section */
@@ -657,12 +699,35 @@ const quickActions = [
   cursor: pointer;
 }
 
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  transition: all 0.2s ease;
+  color: var(--color-navy);
+}
+
 .nav-item.active {
-  color: var(--color-gold);
+  background-color: var(--color-gold);
+  border-radius: 12px;
+  color: #000;
 }
 
 .nav-icon {
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  margin-bottom: 2px;
+}
+
+.png-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 .x-small {
