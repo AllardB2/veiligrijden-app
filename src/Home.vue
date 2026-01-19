@@ -411,31 +411,31 @@ const quickActions = [
           <div class="nav-icon mb-1">
             <img :src="homeIcon" alt="Home" class="png-icon" />
           </div>
-          <div class="x-small fw-bold">Home</div>
+          <div class="x-small">Home</div>
         </div>
         <div class="nav-item text-center">
           <div class="nav-icon mb-1">
             <img :src="tripsIcon" alt="Ritten" class="png-icon" />
           </div>
-          <div class="x-small fw-bold">Ritten</div>
+          <div class="x-small">Ritten</div>
         </div>
         <div class="nav-item text-center">
           <div class="nav-icon mb-1">
             <img :src="mapIcon" alt="Kaart" class="png-icon" />
           </div>
-          <div class="x-small fw-bold">Kaart</div>
+          <div class="x-small">Kaart</div>
         </div>
         <div class="nav-item text-center">
           <div class="nav-icon mb-1">
             <img :src="discountIcon" alt="Korting" class="png-icon" />
           </div>
-          <div class="x-small fw-bold">Korting</div>
+          <div class="x-small">Korting</div>
         </div>
         <div class="nav-item text-center">
           <div class="nav-icon mb-1">
             <img :src="moreIcon" alt="Meer" class="png-icon" />
           </div>
-          <div class="x-small fw-bold">Meer</div>
+          <div class="x-small">Meer</div>
         </div>
       </nav>
     </div>
